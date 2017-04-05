@@ -1,0 +1,33 @@
+$(function() {
+	// alert('I am jquery');
+
+	$("#import-csv").click(function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			url: '/csv/csv.php',
+			method: 'get',
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				var appendHtml = "";
+				// alert(data.length);
+				for (var key in data) {
+					console.log(key, '---', data[key]);
+					appendHtml += '<tr>' +
+									'<td>' + data[key].Time + ' </td>' +
+									'<td>' + data[key].Symbol + ' </td>' +
+									'<td>' + data[key].Message1 + ' </td>' +
+									'<td> makr124 </td>' +
+									'<td>' +
+										'<span class="label label-sm label-success"> Approved </span>' +
+									'</td>' +
+								'</tr>';
+					
+				}
+
+				$("#tbody-csv").html(appendHtml);
+			}
+		})
+	})
+});

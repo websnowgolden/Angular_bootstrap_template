@@ -1,0 +1,5 @@
+.custom-height {
+	display: block;
+	height: 230px;
+	overflow-y: scroll;
+}
