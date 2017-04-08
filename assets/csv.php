@@ -14,7 +14,10 @@ while (($row = fgetcsv($file)) !== FALSE) {
     }
     $all_rows[] = array_combine($header, $row);
 }
-$time = date('Y/m/d H:i:s');
-echo $time;
-$all[] = array_merge($all_rows,$time);
+
 //echo json_encode($all_rows);
+
+$time = date('m/d/Y H:i');
+$all[] = array_merge($all_rows,array($time));
+
+echo json_encode(array('result1'=>$all_rows,'result2'=>$time));

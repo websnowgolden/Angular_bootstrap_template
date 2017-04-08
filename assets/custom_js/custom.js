@@ -1,6 +1,6 @@
 $(function() {
 
-	setInterval(auto_animation_csv1,10000);    
+	setInterval(auto_animation_csv1,1000000);    
 	function auto_animation_csv1() {
 		$("#import-csv1").trigger("click");
 	}
@@ -12,25 +12,50 @@ $(function() {
 	});
 	function autoload_csv1(){
 //		alert('this is autoload_csv1');
+
+		var data21, data22;
 		$.ajax({
 			url: '../assets/csv.php?id=1',
 			method: 'get',
 			dataType: 'json',
 			success: function(data) {
+
+				data22=data.result2;
+				data21=data.result1;
 				// console.log(data);
 				var appendHtml = "";
 //				alert('CSV1 updated successfully.');
-				for (var key in data) {
+				for (var key in data21) {
 					// console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
 
@@ -54,29 +79,56 @@ $(function() {
 	});
 	function autoload_csv2(){
 //		alert('this is autoload_csv1');
+		var data21, data22;
 		$.ajax({
 			url: '../assets/csv.php?id=2',
 			method: 'get',
 			dataType: 'json',
 			success: function(data) {
+
+				data22=data.result2;
+				data21=data.result1;
 				// console.log(data);
 				var appendHtml = "";
-				//alert('CSV2 updated successfully.');
-				for (var key in data) {
+//				alert('CSV1 updated successfully.');
+				for (var key in data21) {
 					// console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
 
 				$("#tbody-csv2").html(appendHtml);
+			},
+			error: function(e) {
+				alert(e);
 			}
 		});
 	}
@@ -93,30 +145,56 @@ $(function() {
 		autoload_csv3();
 	});
 	function autoload_csv3(){
-//		alert('this is autoload_csv1');
+//		var data21, data22;
 		$.ajax({
 			url: '../assets/csv.php?id=3',
 			method: 'get',
 			dataType: 'json',
 			success: function(data) {
+
+				data22=data.result2;
+				data21=data.result1;
 				// console.log(data);
 				var appendHtml = "";
-				//alert('CSV3 updated successfully.');
-				for (var key in data) {
+//				alert('CSV1 updated successfully.');
+				for (var key in data21) {
 					// console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
 
 				$("#tbody-csv3").html(appendHtml);
+			},
+			error: function(e) {
+				alert(e);
 			}
 		});
 	}
@@ -134,29 +212,56 @@ $(function() {
 	});
 	function autoload_csv4(){
 //		alert('this is autoload_csv1');
+		var data21, data22;
 		$.ajax({
 			url: '../assets/csv.php?id=4',
 			method: 'get',
 			dataType: 'json',
 			success: function(data) {
+
+				data22=data.result2;
+				data21=data.result1;
 				// console.log(data);
 				var appendHtml = "";
-				//alert('CSV4 updated successfully.');
-				for (var key in data) {
+//				alert('CSV1 updated successfully.');
+				for (var key in data21) {
 					// console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
 
 				$("#tbody-csv4").html(appendHtml);
+			},
+			error: function(e) {
+				alert(e);
 			}
 		});
 	}
@@ -174,29 +279,56 @@ $(function() {
 	});
 	function autoload_csv5(){
 //		alert('this is autoload_csv1');
+		var data21, data22;
 		$.ajax({
 			url: '../assets/csv.php?id=5',
 			method: 'get',
 			dataType: 'json',
 			success: function(data) {
+
+				data22=data.result2;
+				data21=data.result1;
 				// console.log(data);
 				var appendHtml = "";
-				//alert('CSV5 updated successfully.');
-				for (var key in data) {
+//				alert('CSV1 updated successfully.');
+				for (var key in data21) {
 					// console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
 
 				$("#tbody-csv5").html(appendHtml);
+			},
+			error: function(e) {
+				alert(e);
 			}
 		});
 	}
@@ -215,29 +347,56 @@ $(function() {
 	});
 	function autoload_csv6(){
 //		alert('this is autoload_csv1');
+		var data21, data22;
 		$.ajax({
 			url: '../assets/csv.php?id=6',
 			method: 'get',
 			dataType: 'json',
 			success: function(data) {
+
+				data22=data.result2;
+				data21=data.result1;
 				// console.log(data);
 				var appendHtml = "";
-				//alert('CSV6 updated successfully.');
-				for (var key in data) {
+//				alert('CSV1 updated successfully.');
+				for (var key in data21) {
 					// console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
 
 				$("#tbody-csv6").html(appendHtml);
+			},
+			error: function(e) {
+				alert(e);
 			}
 		});
 	}
@@ -252,21 +411,62 @@ $(function() {
 			async: false,
 			success: function(data) {
 //				console.log(data);
-				var appendHtml = "";
+// 				var appendHtml = "";
 
-				for (var key in data) {
-//					console.log(key, '---', data[key]);
-					appendHtml += '<tr>' +
-									'<td>' + data[key].Time + ' </td>' +
-									'<td>' + data[key].Symbol + ' </td>' +
-									'<td>' + data[key].Message1 + ' </td>' +
-									'<td> makr124 </td>' +
-									'<td>' +
-										'<span class="label label-sm label-success"> Approved </span>' +
-									'</td>' +
-								'</tr>';
+// 				for (var key in data) {
+// //					console.log(key, '---', data[key]);
+// 					appendHtml += '<tr>' +
+// 									'<td>' + data[key].Time + ' </td>' +
+// 									'<td>' + data[key].Symbol + ' </td>' +
+// 									'<td>' + data[key].Message1 + ' </td>' +
+// 									'<td> makr124 </td>' +
+// 									'<td>' +
+// 										'<span class="label label-sm label-success"> Approved </span>' +
+// 									'</td>' +
+// 								'</tr>';
+					
+// 				}
+// 				$(element).html(appendHtml);
+				data22=data.result2;
+				data21=data.result1;
+				// console.log(data);
+				var appendHtml = "";
+//				alert('CSV1 updated successfully.');
+				for (var key in data21) {
+					// console.log(key, '---', data[key]);
+
+					var server_time = new Date(data22);
+					var votes_time = new Date(data21[key].Time);
+					var diff = server_time - votes_time;
+					var diffSeconds = diff/1000;
+					var MM = Math.floor(diffSeconds/60);
+
+					if (MM <= 30)
+					{
+						appendHtml += '<tr class="lastest_news">' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}else {
+						appendHtml += '<tr>' +
+										'<td>' + data21[key].Time + ' </td>' +
+										'<td>' + data21[key].Symbol + ' </td>' +
+										'<td>' + data21[key].Message1 + ' </td>' +
+										'<td> makr124 </td>' +
+										'<td>' +
+											'<span class="label label-sm label-success"> Approved </span>' +
+										'</td>' +
+									'</tr>';
+					}
 					
 				}
+
+				// $("#tbody-csv6").html(appendHtml);
 				$(element).html(appendHtml);
 			},
 			error: function(e)

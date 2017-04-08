@@ -3,3 +3,26 @@
 	height: 230px;
 	overflow-y: scroll;
 }
+@-webkit-keyframes invalid {
+  from { background-color: #364150; }
+  to { background-color: inherit; }
+}
+@-moz-keyframes invalid {
+  from { background-color: #364150; }
+  to { background-color: inherit; }
+}
+@-o-keyframes invalid {
+  from { background-color: #364150; }
+  to { background-color: inherit; }
+}
+@keyframes invalid {
+  0% { background-color: #364150; }
+  50% { background-color: inherit; }
+  100% { background-color: #364150; }
+}
+.lastest_news {
+  -webkit-animation: rotator 3s infinite linear; /* Safari 4+ */
+  -moz-animation:    invalid 3s infinite; /* Fx 5+ */
+  -o-animation:      invalid 3s infinite; /* Opera 12+ */
+  animation:         invalid 3s infinite; /* IE 10+ */
+}
