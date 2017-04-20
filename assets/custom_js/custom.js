@@ -1,4 +1,3 @@
-//csv file upload update
 $(function() {
 
 	setInterval(auto_animation_csv1,1000000);    
@@ -23,12 +22,11 @@ $(function() {
 
 				data22=data.result2;
 				data21=data.result1;
-				// console.log(data);
+			
 				var appendHtml = "";
 //				alert('CSV1 updated successfully.');
 				for (var key in data21) {
-					// console.log(key, '---', data[key]);
-
+					
 					var server_time = new Date(data22);
 					var votes_time = new Date(data21[key].Time);
 					var diff = server_time - votes_time;
